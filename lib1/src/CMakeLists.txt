@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
+
 project(calc VERSION 0.0.1 DESCRIPTION "Calculator Library")
 
 set(CMAKE_CXX_STANDARD 17)

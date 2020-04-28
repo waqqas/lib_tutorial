@@ -8,6 +8,7 @@ namespace My {
 namespace Awesome {
 class Calculator {
 private:
+  bool done = false;
   std::vector<int> args;
 
 public:

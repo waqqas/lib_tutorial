@@ -4,7 +4,9 @@
 
 namespace My {
 namespace Awesome {
-int Calculator::add() { return std::accumulate(args.begin(), args.end(), 0); }
+int Calculator::add() { 
+    done = true;
+    return std::accumulate(args.begin(), args.end(), 0); }
 
 void Calculator::push(int arg) { args.push_back(arg); }
 

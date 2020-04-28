@@ -5,7 +5,11 @@ using namespace My::Awesome;
 int main(void) {
   Calculator c;
 
-  std::cout << "result: " << c.add(1, 2) << std::endl;
+  c.push(1);
+  c.push(2);
+  c.push(3);
+
+  std::cout << "result: " << c.add() << std::endl;
 
   return 0;
 }

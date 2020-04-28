@@ -1,7 +1,13 @@
 #include "lib1/Calculator.h"
 
+#include <numeric>
+
 namespace My {
 namespace Awesome {
-int Calculator::add(int num1, int num2) { return num1 + num2; }
+int Calculator::add() { return std::accumulate(args.begin(), args.end(), 0); }
+
+void Calculator::push(int arg) { args.push_back(arg); }
+
+void Calculator::clear() { args.clear(); }
 } // namespace Awesome
 } // namespace My

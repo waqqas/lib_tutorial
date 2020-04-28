@@ -1,4 +1,4 @@
-#include "lib1/Calculator.h"
+#include "calc/Calculator.h"
 
 #include <numeric>
 

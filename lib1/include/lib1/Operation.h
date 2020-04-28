@@ -1,0 +1,4 @@
+#ifndef LIBCALC_OPERATION_H
+#define LIBCALC_OPERATION_H
+
+#endif

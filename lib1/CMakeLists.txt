@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(lib1_project)
+project(calclib_project)
 
 set(CMAKE_CXX_STANDARD 17)
 

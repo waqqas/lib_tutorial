@@ -1,5 +1,5 @@
-#ifndef LIB1_CALCULATOR_H // header guard include library prefix
-#define LIB1_CALCULATOR_H
+#ifndef LIBCALC_CALCULATOR_H // header guard include library prefix
+#define LIBCALC_CALCULATOR_H
 
 #include <vector>
 

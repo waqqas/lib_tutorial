@@ -1,15 +1,31 @@
 #include "calc/Calculator.h"
 
+#include <functional>
 #include <numeric>
+#include <thread>
 
 namespace My {
 namespace Awesome {
-int Calculator::add() { 
-    done = true;
-    return std::accumulate(args.begin(), args.end(), 0); }
 
-void Calculator::push(int arg) { args.push_back(arg); }
+void Calculator::sum(std::promise<int> &&p) {
+  p.set_value(std::accumulate(_args.begin(), _args.end(), 0));
+}
 
-void Calculator::clear() { args.clear(); }
+int Calculator::add() {
+  _done = true;
+
+  std::promise<int> p;
+  auto f = p.get_future();
+
+  std::thread t(std::bind(&Calculator::sum, this, std::placeholders::_1),
+                std::move(p));
+  t.join();
+
+  return f.get();
+}
+
+void Calculator::push(int arg) { _args.push_back(arg); }
+
+void Calculator::clear() { _args.clear(); }
 } // namespace Awesome
 } // namespace My

@@ -6,6 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 include(GNUInstallDirs)
 
+find_package(Threads REQUIRED)
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
@@ -13,6 +15,9 @@ file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/include/calc/*.h)
 file(GLOB SOURCES *.cpp)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME}-static STATIC ${SOURCES} ${HEADERS})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}

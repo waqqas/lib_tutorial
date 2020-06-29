@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 17)
 include(GNUInstallDirs)
 
 find_package(Threads REQUIRED)
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR})
+find_package(Nanolog REQUIRED)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -14,10 +16,13 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/include/calc/*.h)
 file(GLOB SOURCES *.cpp)
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
-add_library(${PROJECT_NAME}-static STATIC ${SOURCES} ${HEADERS})
+add_library(${PROJECT_NAME} STATIC ${SOURCES} ${HEADERS})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads)
+# set_property(TARGET ${PROJECT_NAME} PROPERTY IMPORTED_LOCATION ${Nanolog_LIB_DIR}/libNanolog.a)
+
+add_dependencies(${PROJECT_NAME} Nanolog)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Threads::Threads Nanolog rt)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
     VERSION ${PROJECT_VERSION}
@@ -27,6 +32,10 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 configure_file(${PROJECT_NAME}.pc.in ${PROJECT_NAME}.pc @ONLY)
 
 target_include_directories(${PROJECT_NAME} PRIVATE .)
+target_include_directories(${PROJECT_NAME} PUBLIC ${Nanolog_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${Nanolog_INSTALL_DIR}/include)
+# target_link_directories(${PROJECT_NAME} PRIVATE ${THIRD_PARTY_SOURCE_DIR}/nanolog/lib)
+# target_link_libraries(${PROJECT_NAME} PRIVATE Nanolog)
 
 install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

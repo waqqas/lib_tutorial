@@ -1,4 +1,5 @@
 #include "calc/Calculator.h"
+#include "log.h"
 
 #include <functional>
 #include <numeric>
@@ -6,6 +7,12 @@
 
 namespace My {
 namespace Awesome {
+
+Calculator::Calculator() {
+  NanoLog::setLogFile("./logFile");
+  NanoLog::preallocate();
+  NanoLog::setLogLevel(NanoLog::NOTICE);
+}
 
 void Calculator::sum(std::promise<int> &&p) {
   p.set_value(std::accumulate(_args.begin(), _args.end(), 0));
@@ -21,7 +28,10 @@ int Calculator::add() {
                 std::move(p));
   t.join();
 
-  return f.get();
+  auto result = f.get();
+  // NANO_LOG(NOTICE, "Result: %d", result);
+
+  return result;
 }
 
 void Calculator::push(int arg) { _args.push_back(arg); }

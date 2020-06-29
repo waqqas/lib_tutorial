@@ -18,6 +18,7 @@ public:
   int add();
   void clear();
   void push(int);
+  Calculator();
 };
 } // namespace Awesome
 } // namespace My

@@ -24,6 +24,8 @@ elseif(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     add_definitions(-DFLAGS="DEBUG: ${CMAKE_CXX_FLAGS_DEBUG}")
 endif()
 
+set(THIRD_PARTY_SOURCE_DIR ${CMAKE_SOURCE_DIR}/third_party)
+
 add_subdirectory(src)
 
 option(BUILD_EXAMPLES "Enable building examples" ON)

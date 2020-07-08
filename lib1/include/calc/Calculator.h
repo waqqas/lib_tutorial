@@ -7,6 +7,7 @@
 // namespaced library
 namespace My {
 namespace Awesome {
+
 class Calculator {
 private:
   bool _done = false;

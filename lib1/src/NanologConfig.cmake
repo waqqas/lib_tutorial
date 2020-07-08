@@ -17,8 +17,8 @@ set(Nanolog_LIB_DIR ${SOURCE_DIR}/runtime)
 
 add_library(Nanolog STATIC IMPORTED)
 
-set_property(TARGET Nanolog PROPERTY IMPORTED_LOCATION ${Nanolog_LIB_DIR}/libNanolog.a)
+set_property(TARGET Nanolog PROPERTY IMPORTED_LOCATION ${Nanolog_LIB_DIR}/libNanoLog.a)
 add_dependencies(Nanolog Nanolog_project)
 
-install(FILES ${Nanolog_LIB_DIR}/libNanolog.a DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(FILES ${Nanolog_LIB_DIR}/libNanoLog.a DESTINATION ${CMAKE_INSTALL_LIBDIR})
 install(PROGRAMS ${Nanolog_LIB_DIR}/decompressor DESTINATION ${CMAKE_INSTALL_BINDIR})
